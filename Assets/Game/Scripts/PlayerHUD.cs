@@ -1,18 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHUD : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Text goldCount;
+    PlayerCharacter character;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	private void Awake()
+	{
+		character = FindObjectOfType<PlayerCharacter>();
+	}
+
+	private void Update()
+	{
+		if (character)
+		{
+			goldCount.text = "Coin Count:" + character.GetCoinCount().ToString();
+		}
+	}
 }

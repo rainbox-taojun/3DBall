@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
 
         var cameraTrans = playerCamera.cameraComponent.transform;
         var movement = (v * cameraTrans.forward + h * cameraTrans.right).normalized;
-
+        movement.y = 0;
         character.Move(movement);
 
         var jump = Input.GetKeyDown(KeyCode.Space);
