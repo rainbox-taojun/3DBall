@@ -10,9 +10,12 @@ public class PlayerCharacter : MonoBehaviour
 	bool isAlive = true;
 	public AudioClip deadSound;
 
+	PlayerController controller;
+
 	void Awake()
 	{
 		rigid = GetComponent<Rigidbody>();
+		controller = FindObjectOfType<PlayerController>();
 	}
 
 	public void Move(Vector3 force)
@@ -53,5 +56,6 @@ public class PlayerCharacter : MonoBehaviour
 	{
 		isAlive = false;
 		AudioSource.PlayClipAtPoint(deadSound, transform.position);
+		controller.ShowGameoverPanel();
 	}
 }

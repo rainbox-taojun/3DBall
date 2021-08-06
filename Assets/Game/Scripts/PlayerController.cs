@@ -6,11 +6,13 @@ public class PlayerController : MonoBehaviour
 {
     PlayerCharacter character;
     PlayerCamera playerCamera;
+    PlayerHUD hud;
 
     void Awake()
     {
         character = FindObjectOfType<PlayerCharacter>();
         playerCamera = FindObjectOfType<PlayerCamera>();
+        hud = FindObjectOfType<PlayerHUD>();
     }
 
     // Update is called once per frame
@@ -29,5 +31,10 @@ public class PlayerController : MonoBehaviour
 		{
             character.Jump();
 		}
+    }
+
+    public void ShowGameoverPanel()
+	{
+        hud.ShowGameoverPanel();
     }
 }
