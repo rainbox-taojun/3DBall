@@ -10,7 +10,7 @@ public class PlayerCharacter : MonoBehaviour
 	bool isAlive = true;
 	public AudioClip deadSound;
 
-	PlayerController controller;
+	public PlayerController controller;
 
 	void Awake()
 	{
@@ -45,7 +45,7 @@ public class PlayerCharacter : MonoBehaviour
 	{
 		if (transform.position.y < -30)
 		{
-			if (isAlive)
+			if (isAlive && controller.mode.GetGameState() == false)
 			{
 				Die();
 			}

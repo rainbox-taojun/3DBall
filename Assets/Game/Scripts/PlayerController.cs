@@ -7,17 +7,19 @@ public class PlayerController : MonoBehaviour
     PlayerCharacter character;
     PlayerCamera playerCamera;
     PlayerHUD hud;
-
+    public GameMode mode;
     void Awake()
     {
         character = FindObjectOfType<PlayerCharacter>();
         playerCamera = FindObjectOfType<PlayerCamera>();
         hud = FindObjectOfType<PlayerHUD>();
+        mode = FindObjectOfType<GameMode>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (mode.GetGameState() == true) return;
         var h = Input.GetAxis("Horizontal");
         var v = Input.GetAxis("Vertical");
 
@@ -36,5 +38,12 @@ public class PlayerController : MonoBehaviour
     public void ShowGameoverPanel()
 	{
         hud.ShowGameoverPanel();
+        mode.SetGameState(true);
+    }
+
+    public void LevelComplete()
+	{
+        hud.ShowGameoverPanel();
+        mode.SetGameState(true);
     }
 }
