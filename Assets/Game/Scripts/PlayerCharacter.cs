@@ -10,9 +10,12 @@ public class PlayerCharacter : MonoBehaviour
 	bool isAlive = true;
 	public AudioClip deadSound;
 
+	public PlayerController controller;
+
 	void Awake()
 	{
-		rigid = GetComponent<Rigidbody>(); // 获取刚体组件
+		rigid = GetComponent<Rigidbody>();// 获取刚体组件
+		controller = FindObjectOfType<PlayerController>();// 获取角色控制器
 	}
 
   // 移动方法
@@ -47,7 +50,7 @@ public class PlayerCharacter : MonoBehaviour
     // 角色高度低于-30 则死亡
 		if (transform.position.y < -30)
 		{
-			if (isAlive)
+			if (isAlive && controller.mode.GetGameState() == false)
 			{
 				Die();
 			}
@@ -58,5 +61,6 @@ public class PlayerCharacter : MonoBehaviour
 	{
 		isAlive = false;
 		AudioSource.PlayClipAtPoint(deadSound, transform.position); // 播放死亡音效
+		controller.ShowGameoverPanel(); // 打开ui面板
 	}
 }
